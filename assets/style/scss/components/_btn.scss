@@ -1,0 +1,24 @@
+.tip--btn,
+.tip--btn:link,
+.tip--btn:visited,
+.btn--reset:link,
+.btn--reset:visited {
+	padding: 1.2rem 2.4rem;
+	border-radius: 1rem;
+	border: none;
+	display: inline-block;
+	cursor: pointer;
+	background-color: $color-very-dark-cyan;
+	color: $color-white;
+	width: 30%;
+}
+
+.active,
+.tip--btn:visited,
+.tip--btn:active {
+	background-color: $color-primary;
+	color: #000;
+}
+
+.btn--reset {
+}

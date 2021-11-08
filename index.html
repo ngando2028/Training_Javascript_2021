@@ -11,14 +11,13 @@
 			sizes="32x32"
 			href="./images/favicon-32x32.png"
 		/>
-		<link rel="stylesheet" href="./assets/style/css/style.css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
 			rel="stylesheet"
 		/>
-
+		<link rel="stylesheet" href="./assets/style/css/style.css" />
 		<title>Zodinet Training JavaScript | Tip calculator app</title>
 
 		<!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
@@ -33,9 +32,70 @@
 		</style>
 	</head>
 	<body>
-		<div class="container"></div>
-		Bill Select Tip % 5% 10% 15% 25% 50% Custom Number of People Tip Amount /
-		person Total / person Reset
+		<main class="container">
+			<!-- <h1>Splitter</h1> -->
+			<div class="calculator">
+				<div class="calculator__form">
+					<div class="calculator__control">
+						<label class="calculator__control--label" for="bill">Bill</label>
+						<input
+							type="text"
+							name="bill"
+							id="bill"
+							class="calculator__control--input calculator__control--bill"
+							placeholder="0"
+						/>
+					</div>
+
+					<div class="calculator__control">
+						<label class="calculator__control--label" for="select"
+							>Select Tip %
+						</label>
+						<div class="calculator__control--select">
+							<button class="tip--btn" value="5">5%</button>
+							<button class="tip--btn" value="10">10%</button>
+							<button class="tip--btn" value="15">15%</button>
+							<button class="tip--btn" value="25">25%</button>
+							<button class="tip--btn" value="50">50%</button>
+							<input
+								class="calculator__control--input calculator__control--custom"
+								placeholder="Custom"
+							/>
+						</div>
+					</div>
+
+					<div class="calculator__control">
+						<label class="calculator__control--label" for="person"
+							>Number of people
+							<span class="invalid">Can't be zero </span></label
+						>
+						<input
+							type="text"
+							name="person"
+							id="person"
+							class="calculator__control--input calculator__control--person"
+							placeholder="0"
+						/>
+					</div>
+				</div>
+				<div class="calculator__result">
+					<div class="calculator__result-group">
+						<label class="calculator__result--label"
+							>Tip Amount <span>/person</span></label
+						>
+						<p class="calcultor__result--tip">$</p>
+					</div>
+					<div class="calculator__result-group">
+						<label class="calculator__result--label"
+							>Total <span>/person</span></label
+						>
+						<p class="calcultor__result--total">$</p>
+					</div>
+
+					<button class="btn--reset">Reset</button>
+				</div>
+			</div>
+		</main>
 
 		<div class="attribution">
 			Challenge by
@@ -43,6 +103,6 @@
 				>Frontend Mentor</a
 			>. Coded by <a href="#">Ngan Do</a>.
 		</div>
-		<scrip src="./src/app.js"></scrip>
+		<script src="./src/app.js"></script>
 	</body>
 </html>

@@ -1,1 +1,7 @@
-@import "base/base.scss";
+@import "./base/base.scss";
+@import "./base/common.scss";
+@import "./base/variables.scss";
+
+@import "./components/home-page.scss";
+@import "./components/calculator";
+@import "./components/btn";

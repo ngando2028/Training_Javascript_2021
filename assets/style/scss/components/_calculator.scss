@@ -1,0 +1,106 @@
+.calculator {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	border-radius: 2rem;
+	gap: 2rem;
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	&__control {
+		display: flex;
+		gap: 0.5rem;
+		flex-direction: column;
+
+		&--label {
+			font-size: 1.4rem;
+			font-weight: $font-weight-bold;
+			color: $color-dark-grayish-cyan-1;
+		}
+
+		&--input {
+			font-size: 2.4rem;
+			color: $color-very-dark-cyan;
+			font-weight: $font-weight-bold;
+			border: none;
+			padding: 1rem;
+			text-align: right;
+			border-radius: 1rem;
+
+			&:focus {
+				outline: none;
+			}
+
+			&::placeholder {
+				text-align: end;
+				color: $color-very-dark-cyan;
+			}
+		}
+
+		&--bill {
+			background: $color-light-grayish-cyan-2 url(../../images/icon-dollar.svg)
+				no-repeat center left;
+		}
+
+		&--person {
+			background: $color-light-grayish-cyan-2 url(../../images/icon-person.svg)
+				no-repeat center left;
+		}
+
+		&--select {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1rem;
+		}
+
+		&--custom {
+			// display: inline-block;
+			background-color: $color-light-grayish-cyan-2;
+			width: 30%;
+
+			&::placeholder {
+				text-align: center;
+				color: $color-dark-grayish-cyan-1;
+				font-size: 2.4rem;
+			}
+		}
+	}
+
+	&__result {
+		background-color: $color-very-dark-cyan;
+		border-radius: 2rem;
+		padding: 4rem;
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+
+		&-group {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: wrap;
+
+			& p {
+				font-size: 4rem;
+				font-weight: $font-weight-bold;
+				color: $color-primary;
+			}
+		}
+
+		&--label {
+			display: block;
+			color: $color-white;
+			font-size: 1.8rem;
+			font-weight: $font-weight-bold;
+			& span {
+				display: block;
+				font-size: 1.4rem;
+				font-weight: $font-weight-default;
+				color: $color-light-grayish-cyan-1;
+			}
+		}
+	}
+}
