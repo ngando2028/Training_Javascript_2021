@@ -80,10 +80,11 @@ body {
   .calculator__result {
     background-color: #00494d;
     border-radius: 2rem;
-    padding: 4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem; }
+    padding: 4rem; }
+    .calculator__result__groupt {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem; }
     .calculator__result-group {
       display: flex;
       justify-content: space-between;
@@ -123,3 +124,11 @@ body {
 .tip--btn:active {
   background-color: #26c0ab;
   color: #000; }
+
+.btn--reset {
+  display: block;
+  margin-top: 4rem;
+  width: 100%;
+  padding: 2rem;
+  background-color: #26c0ab;
+  color: #00494d; }

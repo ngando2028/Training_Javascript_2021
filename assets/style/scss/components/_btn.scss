@@ -21,4 +21,10 @@
 }
 
 .btn--reset {
+	display: block;
+	margin-top: 4rem;
+	width: 100%;
+	padding: 2rem;
+	background-color: $color-primary;
+	color: $color-very-dark-cyan;
 }
