@@ -1,0 +1,27 @@
+{
+	"name": "Training_Javascript_2021",
+	"version": "1.0.0",
+	"description": "![Design preview for the Tip calculator app coding challenge](./design/desktop-preview.jpg)",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"compile:sass": "node-sass assets/style/scss/main.scss  assets/style/css/style.css -w"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ngando2028/Training_Javascript_2021.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/ngando2028/Training_Javascript_2021/issues"
+	},
+	"homepage": "https://github.com/ngando2028/Training_Javascript_2021#readme",
+	"dependencies": {
+		"jquery": "^3.6.0"
+	},
+	"devDependencies": {
+		"node-sass": "^6.0.1"
+	}
+}
