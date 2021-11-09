@@ -1,0 +1,43 @@
+@media only screen and (max-width: 37.6rem) {
+	.container {
+		padding: 2rem 4rem;
+	}
+
+	.calculator {
+		flex-direction: column;
+
+		&__form {
+			gap: 4rem;
+			width: 100%;
+		}
+
+		&__result {
+			width: 100%;
+
+			&-control {
+				flex-direction: column;
+				gap: 0;
+			}
+
+			&--tip,
+			&--icon,
+			&--total {
+				font-size: 2rem;
+			}
+		}
+
+		&__control {
+			&--custom {
+				width: 47%;
+			}
+
+			&--input {
+				font-size: 2rem;
+			}
+		}
+	}
+
+	.tip--btn {
+		width: 47%;
+	}
+}

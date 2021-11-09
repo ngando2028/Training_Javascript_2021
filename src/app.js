@@ -114,8 +114,8 @@ const app = {
 		);
 
 		let resultData = await result.json();
-		tip.textContent = `${resultData.amount.toFixed(2)}`;
-		total.textContent = `${resultData.total.toFixed(2)}`;
+		tip.textContent = `$${resultData.amount.toFixed(2)}`;
+		total.textContent = `$${resultData.total.toFixed(2)}`;
 		console.log(resultData);
 	},
 
