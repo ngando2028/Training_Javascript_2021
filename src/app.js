@@ -43,6 +43,7 @@ const app = {
 				? btn.classList.remove("active")
 				: btn.classList.add("active");
 		});
+		this.tipValue = 0;
 	},
 
 	calculator: function (billValue, tipValue, personValue) {
@@ -66,6 +67,9 @@ const app = {
 			tip.textContent = `$${resultData.amount.toFixed(2)}`;
 			total.textContent = `$${resultData.total.toFixed(2)}`;
 		} catch (error) {
+			alert(
+				"Internet not available, Cross check your internet connectivity and try again"
+			);
 			btnCal.disabled = btnReset.disabled = false;
 		}
 	},
@@ -120,7 +124,10 @@ const app = {
 		[bill, person, inputCustom].forEach((el) => {
 			el.addEventListener("keypress", (evt) => {
 				if (
-					(evt.which != 8 && evt.which != 0 && evt.which < 48) ||
+					(evt.which != 8 &&
+						evt.which != 0 &&
+						evt.which < 48 &&
+						evt.which == 69) ||
 					evt.which > 57
 				) {
 					// 0 for null values
@@ -133,7 +140,6 @@ const app = {
 
 		//Handle bill event
 		bill.addEventListener("change", (e) => {
-			console.log(e);
 			this.isValidBill = this.isNumberValid(bill, parseFloat(e.target.value));
 			this.isValidBill
 				? (this.billValue = parseFloat(e.target.value))
@@ -159,7 +165,7 @@ const app = {
 		inputCustom.addEventListener("change", (e) => {
 			this.isValidTip = this.isNumberValid(
 				inputCustom,
-				parseFloat(e.target.value)
+				parseFloat(e.target.value || 0)
 			);
 			this.isValidTip
 				? (this.tipValue = parseFloat(e.target.value))
