@@ -21,17 +21,19 @@
 	transition: all 0.3s;
 }
 
-.btn:hover {
+.btn:hover:not([disabled]) {
 	box-shadow: 0 1rem 1.5rem rgba($color-black, 0.4);
 	top: 3px;
 }
 
-.btn:active {
+.btn:active:not([disabled]) {
 	top: 1.5px;
 }
 
 .btn:disabled {
-	cursor: not-allowed;
+	cursor: default;
+	background-color: $color-dark-grayish-cyan-1;
+	color: $color-dark-grayish-cyan-2;
 }
 
 .active,
@@ -45,11 +47,11 @@
 .btn--calculator {
 	display: block;
 	margin-top: 4rem;
-	width: 100%;
+	width: 45%;
 	padding: 1.6rem;
 	background-color: $color-primary;
 	color: $color-very-dark-cyan;
-	font-size: 2.4rem;
+	font-size: 2rem;
 	font-weight: $font-weight-bold;
 	border-radius: 2rem;
 }

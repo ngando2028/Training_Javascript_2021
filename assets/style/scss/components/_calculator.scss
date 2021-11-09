@@ -39,7 +39,6 @@
 			color: $color-very-dark-cyan;
 			font-weight: $font-weight-bold;
 			border: 0.2rem solid transparent;
-			padding: 1rem;
 			text-align: right;
 			border-radius: 1rem;
 			font-family: "Space Mono", sans-serif;
@@ -133,7 +132,6 @@
 		&-control {
 			display: flex;
 			justify-content: space-between;
-			gap: 1.6rem;
 		}
 	}
 }

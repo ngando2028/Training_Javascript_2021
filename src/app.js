@@ -9,8 +9,8 @@ const total = $(".calculator__result--total");
 const inputCustom = $(".calculator__control--custom");
 const messError = $(".invalid");
 const btnArr = $$(".tip--btn");
-const btnReset = $(".btn--reset");
-const btnCal = $(".btn--calculator");
+let btnReset = $(".btn--reset");
+let btnCal = $(".btn--calculator");
 
 // let billValue, personValue, tipValue, totalValue, isReset;
 
@@ -30,7 +30,11 @@ const app = {
 		inputCustom.value = "";
 		tip.textContent = `$${(0.0).toFixed(2)}`;
 		total.textContent = `$${(0.0).toFixed(2)}`;
-		this.checkFormValid();
+		this.tipValue = 0;
+		this.totalValue = 0;
+		this.billValue = 0;
+		btnCal.disabled = true;
+		this.resetBtn();
 	},
 
 	resetBtn: function (id = -1) {
@@ -50,28 +54,20 @@ const app = {
 		total.textContent = `$${totalValue.toFixed(2)}`;
 	},
 
-	// calculartorAPI: async function (billValue, tipValue, personValue) {
-	// 	btnReset.disabled = true;
-	// 	let result = await fetch(
-	// 		`https://plitter-server.vercel.app/api/calculate?bill=${billValue}&people=${personValue}&tipPercent=${tipValue}`
-	// 	);
-
-	// 	let resultData = await result.json();
-	// 	btnReset.disabled = !resultData.result;
-	// 	tip.textContent = `$${resultData.amount.toFixed(2)}`;
-	// 	total.textContent = `$${resultData.total.toFixed(2)}`;
-	// },
-
 	calculartorAPI: async function () {
-		btnReset.disabled = true;
-		let result = await fetch(
-			`https://plitter-server.vercel.app/api/calculate?bill=${this.billValue}&people=${this.personValue}&tipPercent=${this.tipValue}`
-		);
+		try {
+			btnReset.disabled = btnCal.disabled = true;
+			let result = await fetch(
+				`https://plitter-server.vercel.app/api/calculate?bill=${this.billValue}&people=${this.personValue}&tipPercent=${this.tipValue}`
+			);
 
-		let resultData = await result.json();
-		btnReset.disabled = !resultData.result;
-		tip.textContent = `$${resultData.amount.toFixed(2)}`;
-		total.textContent = `$${resultData.total.toFixed(2)}`;
+			let resultData = await result.json();
+			btnCal.disabled = btnReset.disabled = false;
+			tip.textContent = `$${resultData.amount.toFixed(2)}`;
+			total.textContent = `$${resultData.total.toFixed(2)}`;
+		} catch (error) {
+			btnCal.disabled = btnReset.disabled = false;
+		}
 	},
 
 	//Check number valid
@@ -154,7 +150,6 @@ const app = {
 				? (this.personValue = parseFloat(e.target.value))
 				: (this.personValue = null);
 			this.checkFormValid();
-			console.log(this.formValid);
 		});
 
 		inputCustom.addEventListener("click", () => {
@@ -181,6 +176,7 @@ const app = {
 			if (this.formValid) {
 				this.calculartorAPI();
 			}
+			return;
 		});
 	},
 
