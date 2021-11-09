@@ -12,7 +12,7 @@ const btnArr = $$(".tip--btn");
 const btnReset = $(".btn--reset");
 const btnCal = $(".btn--calculator");
 
-let billValue, personValue, tipValue, totalValue;
+// let billValue, personValue, tipValue, totalValue, isReset;
 
 const app = {
 	billValue: 0,
@@ -33,6 +33,84 @@ const app = {
 		this.checkFormValid();
 	},
 
+	resetBtn: function (id = -1) {
+		btnArr.forEach((btn, index) => {
+			index !== id
+				? btn.classList.remove("active")
+				: btn.classList.add("active");
+		});
+	},
+
+	calculator: function (billValue, tipValue, personValue) {
+		let totalTip = (billValue * tipValue) / 100;
+		tipValue = totalTip / personValue;
+		totalValue = (billValue + totalTip) / personValue;
+
+		tip.textContent = `$${tipValue.toFixed(2)}`;
+		total.textContent = `$${totalValue.toFixed(2)}`;
+	},
+
+	// calculartorAPI: async function (billValue, tipValue, personValue) {
+	// 	btnReset.disabled = true;
+	// 	let result = await fetch(
+	// 		`https://plitter-server.vercel.app/api/calculate?bill=${billValue}&people=${personValue}&tipPercent=${tipValue}`
+	// 	);
+
+	// 	let resultData = await result.json();
+	// 	btnReset.disabled = !resultData.result;
+	// 	tip.textContent = `$${resultData.amount.toFixed(2)}`;
+	// 	total.textContent = `$${resultData.total.toFixed(2)}`;
+	// },
+
+	calculartorAPI: async function () {
+		btnReset.disabled = true;
+		let result = await fetch(
+			`https://plitter-server.vercel.app/api/calculate?bill=${this.billValue}&people=${this.personValue}&tipPercent=${this.tipValue}`
+		);
+
+		let resultData = await result.json();
+		btnReset.disabled = !resultData.result;
+		tip.textContent = `$${resultData.amount.toFixed(2)}`;
+		total.textContent = `$${resultData.total.toFixed(2)}`;
+	},
+
+	//Check number valid
+	isNumberValid: function (el, value) {
+		console.log(value);
+		let invalidEl = $(`#invalid-${el.dataset.index}`);
+		if (Number.isNaN(value) || value <= 0) {
+			invalidEl ? (invalidEl.style.display = "block") : null;
+			el.classList.toggle("input-invalid");
+			return false;
+		}
+
+		invalidEl ? (invalidEl.style.display = "none") : null;
+		el.classList.remove("input-invalid");
+		return true;
+	},
+
+	//Reset field invald
+	resetInvalid: function () {
+		let elInvalid = $$(".invalid");
+		let inputInvalid = $$(".input-invalid");
+		if (elInvalid.length > 0) {
+			elInvalid.forEach((e) => {
+				e.style.display = "none";
+			});
+		}
+
+		if (inputInvalid.length > 0) {
+			inputInvalid.forEach((e) => {
+				e.classList.remove("input-invalid");
+			});
+		}
+	},
+
+	checkFormValid: function () {
+		this.formValid = this.isValidBill && this.isValidPerson && this.isValidTip;
+		btnCal.disabled = !this.formValid;
+	},
+
 	handlerEvent: function () {
 		//Handler BTN tip
 		btnArr.forEach((btn, index) => {
@@ -43,7 +121,23 @@ const app = {
 			});
 		});
 
+		[bill, person, inputCustom].forEach((el) => {
+			el.addEventListener("keypress", (evt) => {
+				if (
+					(evt.which != 8 && evt.which != 0 && evt.which < 48) ||
+					evt.which > 57
+				) {
+					// 0 for null values
+					// 8 for backspace
+					// 48-57 for 0-9 numbers
+					evt.preventDefault();
+				}
+			});
+		});
+
+		//Handle bill event
 		bill.addEventListener("change", (e) => {
+			console.log(e);
 			this.isValidBill = this.isNumberValid(bill, parseFloat(e.target.value));
 			this.isValidBill
 				? (this.billValue = parseFloat(e.target.value))
@@ -60,6 +154,7 @@ const app = {
 				? (this.personValue = parseFloat(e.target.value))
 				: (this.personValue = null);
 			this.checkFormValid();
+			console.log(this.formValid);
 		});
 
 		inputCustom.addEventListener("click", () => {
@@ -84,73 +179,9 @@ const app = {
 
 		btnCal.addEventListener("click", () => {
 			if (this.formValid) {
-				// this.calculator(this.billValue, this.tipValue, this.personValue);
-				this.calculartorAPI(this.billValue, this.tipValue, this.personValue);
+				this.calculartorAPI();
 			}
-			return;
 		});
-	},
-
-	resetBtn: function (id = -1) {
-		btnArr.forEach((btn, index) => {
-			index !== id
-				? btn.classList.remove("active")
-				: btn.classList.add("active");
-		});
-	},
-
-	calculator: function (billValue, tipValue, personValue) {
-		let totalTip = (billValue * tipValue) / 100;
-		tipValue = totalTip / personValue;
-		totalValue = (billValue + totalTip) / personValue;
-
-		tip.textContent = `$${tipValue.toFixed(2)}`;
-		total.textContent = `$${totalValue.toFixed(2)}`;
-	},
-
-	calculartorAPI: async function (billValue, tipValue, personValue) {
-		let result = await fetch(
-			`https://plitter-server.vercel.app/api/calculate?bill=${billValue}&people=${personValue}&tipPercent=${tipValue}`
-		);
-
-		let resultData = await result.json();
-		tip.textContent = `$${resultData.amount.toFixed(2)}`;
-		total.textContent = `$${resultData.total.toFixed(2)}`;
-		console.log(resultData);
-	},
-
-	isNumberValid: function (el, value) {
-		let invalidEl = $(`#invalid-${el.dataset.index}`);
-		if (value <= 0) {
-			invalidEl ? (invalidEl.style.display = "block") : null;
-			el.classList.toggle("input-invalid");
-			return false;
-		}
-
-		invalidEl ? (invalidEl.style.display = "none") : null;
-		el.classList.remove("input-invalid");
-		return true;
-	},
-
-	resetInvalid: function () {
-		let elInvalid = $$(".invalid");
-		let inputInvalid = $$(".input-invalid");
-		if (elInvalid.length > 0) {
-			elInvalid.forEach((e) => {
-				e.style.display = "none";
-			});
-		}
-
-		if (inputInvalid.length > 0) {
-			inputInvalid.forEach((e) => {
-				e.classList.remove("input-invalid");
-			});
-		}
-	},
-
-	checkFormValid: function () {
-		this.formValid = this.isValidBill && this.isValidPerson && this.isValidTip;
-		btnCal.disabled = !this.formValid;
 	},
 
 	start: function () {

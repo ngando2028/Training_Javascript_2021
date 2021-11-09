@@ -1,3 +1,4 @@
+.btn,
 .tip--btn,
 .tip--btn:link,
 .tip--btn:visited,
@@ -15,12 +16,26 @@
 	background-color: $color-very-dark-cyan;
 	color: $color-white;
 	width: 30%;
-	transition: all 0.3s;
 	font-family: "Space Mono", sans-serif;
+	position: relative;
+	transition: all 0.3s;
+}
+
+.btn:hover {
+	box-shadow: 0 1rem 1.5rem rgba($color-black, 0.4);
+	top: 3px;
+}
+
+.btn:active {
+	top: 1.5px;
+}
+
+.btn:disabled {
+	cursor: not-allowed;
 }
 
 .active,
-.tip--btn:visited,
+.tip--btn:hover,
 .tip--btn:active {
 	background-color: $color-primary;
 	color: #000;
@@ -44,6 +59,5 @@
 	color: $color-very-dark-cyan;
 }
 
-.btn--calculator:disabled {
-	cursor: not-allowed;
-}
+// .btn--calculator:disabled {
+// }

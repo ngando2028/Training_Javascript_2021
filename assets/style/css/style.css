@@ -65,7 +65,7 @@ body {
       font-size: 2.4rem;
       color: #00494d;
       font-weight: 700;
-      border: none;
+      border: 0.2rem solid transparent;
       padding: 1rem;
       text-align: right;
       border-radius: 1rem;
@@ -129,6 +129,7 @@ body {
       justify-content: space-between;
       gap: 1.6rem; }
 
+.btn,
 .tip--btn,
 .tip--btn:link,
 .tip--btn:visited,
@@ -146,11 +147,22 @@ body {
   background-color: #00494d;
   color: white;
   width: 30%;
-  transition: all 0.3s;
-  font-family: "Space Mono", sans-serif; }
+  font-family: "Space Mono", sans-serif;
+  position: relative;
+  transition: all 0.3s; }
+
+.btn:hover {
+  box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.4);
+  top: 3px; }
+
+.btn:active {
+  top: 1.5px; }
+
+.btn:disabled {
+  cursor: not-allowed; }
 
 .active,
-.tip--btn:visited,
+.tip--btn:hover,
 .tip--btn:active {
   background-color: #26c0ab;
   color: #000; }
@@ -170,9 +182,6 @@ body {
 .btn--reset {
   background-color: #c5e4e7;
   color: #00494d; }
-
-.btn--calculator:disabled {
-  cursor: not-allowed; }
 
 @media only screen and (max-width: 37.6rem) {
   .container {
