@@ -17,7 +17,8 @@ body {
   color: red;
   font-size: 1.4rem;
   font-weight: 400;
-  text-align: end; }
+  text-align: end;
+  flex-grow: 1; }
 
 .input-invalid {
   border: 0.2rem solid red !important; }
@@ -28,7 +29,7 @@ body {
 .container {
   max-width: 100rem;
   background-color: white;
-  margin: 10rem auto;
+  margin: 7rem auto;
   border-radius: 2rem;
   padding: 4rem 6rem; }
 
@@ -36,19 +37,30 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   border-radius: 2rem;
-  gap: 2rem; }
+  gap: 2rem;
+  font-family: "Space Mono", sans-serif; }
+  .calculator__heading {
+    font-size: 3.4rem;
+    text-transform: uppercase;
+    color: #00494d;
+    margin: 5rem auto;
+    text-align: center;
+    letter-spacing: 5px; }
   .calculator__form {
     display: flex;
     flex-direction: column;
     gap: 2rem; }
   .calculator__control {
     display: flex;
-    gap: 0.5rem;
-    flex-direction: column; }
+    gap: 20%;
+    position: relative;
+    flex-wrap: wrap; }
     .calculator__control--label {
       font-size: 1.4rem;
       font-weight: 700;
-      color: #5e7a7d; }
+      color: #5e7a7d;
+      margin-bottom: 1rem;
+      width: auto; }
     .calculator__control--input {
       font-size: 2.4rem;
       color: #00494d;
@@ -56,16 +68,21 @@ body {
       border: none;
       padding: 1rem;
       text-align: right;
-      border-radius: 1rem; }
+      border-radius: 1rem;
+      font-family: "Space Mono", sans-serif;
+      width: 100%; }
+      .calculator__control--input::-webkit-outer-spin-button, .calculator__control--input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0; }
       .calculator__control--input:focus {
         outline: none; }
       .calculator__control--input::placeholder {
         text-align: end;
         color: #00494d; }
     .calculator__control--bill {
-      background: #f4fafa url(../../images/icon-dollar.svg) no-repeat center left; }
+      background: #f4fafa url(../../images/icon-dollar.svg) no-repeat 1rem center; }
     .calculator__control--person {
-      background: #f4fafa url(../../images/icon-person.svg) no-repeat center left; }
+      background: #f4fafa url(../../images/icon-person.svg) no-repeat 1rem center; }
     .calculator__control--select {
       display: flex;
       flex-wrap: wrap;
@@ -81,7 +98,7 @@ body {
     background-color: #00494d;
     border-radius: 2rem;
     padding: 4rem; }
-    .calculator__result__groupt {
+    .calculator__result-container {
       display: flex;
       flex-direction: column;
       gap: 2rem; }
@@ -90,34 +107,46 @@ body {
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap; }
-      .calculator__result-group p {
-        font-size: 4rem;
-        font-weight: 700;
-        color: #26c0ab; }
+    .calculator__result--tip, .calculator__result--icon, .calculator__result--total {
+      display: inline-block;
+      font-size: 4rem;
+      font-weight: 700;
+      color: #26c0ab; }
     .calculator__result--label {
       display: block;
       color: white;
       font-size: 1.8rem;
-      font-weight: 700; }
+      font-weight: 700;
+      margin-bottom: 1rem; }
       .calculator__result--label span {
         display: block;
         font-size: 1.4rem;
         font-weight: 400;
         color: #c5e4e7; }
+    .calculator__result-control {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.6rem; }
 
 .tip--btn,
 .tip--btn:link,
 .tip--btn:visited,
+.btn--calculator,
+.btn--calculator:link,
+.btn--calculator:visited,
+.btn--reset,
 .btn--reset:link,
 .btn--reset:visited {
   padding: 1.2rem 2.4rem;
   border-radius: 1rem;
-  border: none;
+  border: 2px solid transparent;
   display: inline-block;
   cursor: pointer;
   background-color: #00494d;
   color: white;
-  width: 30%; }
+  width: 30%;
+  transition: all 0.3s;
+  font-family: "Space Mono", sans-serif; }
 
 .active,
 .tip--btn:visited,
@@ -125,10 +154,21 @@ body {
   background-color: #26c0ab;
   color: #000; }
 
-.btn--reset {
+.btn--reset,
+.btn--calculator {
   display: block;
   margin-top: 4rem;
   width: 100%;
-  padding: 2rem;
+  padding: 1.6rem;
   background-color: #26c0ab;
+  color: #00494d;
+  font-size: 2.4rem;
+  font-weight: 700;
+  border-radius: 2rem; }
+
+.btn--reset {
+  background-color: #c5e4e7;
   color: #00494d; }
+
+.btn--calculator:disabled {
+  cursor: not-allowed; }

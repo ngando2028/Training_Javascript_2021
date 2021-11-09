@@ -3,6 +3,16 @@
 	grid-template-columns: repeat(2, 1fr);
 	border-radius: 2rem;
 	gap: 2rem;
+	font-family: "Space Mono", sans-serif;
+
+	&__heading {
+		font-size: 3.4rem;
+		text-transform: uppercase;
+		color: $color-very-dark-cyan;
+		margin: 5rem auto;
+		text-align: center;
+		letter-spacing: 5px;
+	}
 
 	&__form {
 		display: flex;
@@ -12,13 +22,16 @@
 
 	&__control {
 		display: flex;
-		gap: 0.5rem;
-		flex-direction: column;
+		gap: 20%;
+		position: relative;
+		flex-wrap: wrap;
 
 		&--label {
 			font-size: 1.4rem;
 			font-weight: $font-weight-bold;
 			color: $color-dark-grayish-cyan-1;
+			margin-bottom: 1rem;
+			width: auto;
 		}
 
 		&--input {
@@ -29,6 +42,15 @@
 			padding: 1rem;
 			text-align: right;
 			border-radius: 1rem;
+			font-family: "Space Mono", sans-serif;
+			width: 100%;
+			// margin-top: 1rem;
+
+			&::-webkit-outer-spin-button,
+			&::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
 
 			&:focus {
 				outline: none;
@@ -41,13 +63,13 @@
 		}
 
 		&--bill {
-			background: $color-light-grayish-cyan-2 url(../../images/icon-dollar.svg)
-				no-repeat center left;
+			background: #f4fafa url(../../images/icon-dollar.svg) no-repeat 1rem
+				center;
 		}
 
 		&--person {
 			background: $color-light-grayish-cyan-2 url(../../images/icon-person.svg)
-				no-repeat center left;
+				no-repeat 1rem center;
 		}
 
 		&--select {
@@ -57,7 +79,6 @@
 		}
 
 		&--custom {
-			// display: inline-block;
 			background-color: $color-light-grayish-cyan-2;
 			width: 30%;
 
@@ -74,7 +95,7 @@
 		border-radius: 2rem;
 		padding: 4rem;
 
-		&__groupt {
+		&-container {
 			display: flex;
 			flex-direction: column;
 			gap: 2rem;
@@ -84,12 +105,14 @@
 			justify-content: space-between;
 			align-items: center;
 			flex-wrap: wrap;
-
-			& p {
-				font-size: 4rem;
-				font-weight: $font-weight-bold;
-				color: $color-primary;
-			}
+		}
+		&--tip,
+		&--icon,
+		&--total {
+			display: inline-block;
+			font-size: 4rem;
+			font-weight: $font-weight-bold;
+			color: $color-primary;
 		}
 
 		&--label {
@@ -97,12 +120,19 @@
 			color: $color-white;
 			font-size: 1.8rem;
 			font-weight: $font-weight-bold;
+			margin-bottom: 1rem;
 			& span {
 				display: block;
 				font-size: 1.4rem;
 				font-weight: $font-weight-default;
 				color: $color-light-grayish-cyan-1;
 			}
+		}
+
+		&-control {
+			display: flex;
+			justify-content: space-between;
+			gap: 1.6rem;
 		}
 	}
 }
